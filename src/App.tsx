@@ -13,22 +13,24 @@ function App() {
       <Image
         src="./assets/sunset.jpg"
         zIndex={1}
+        boxSize="100%"
         position="absolute"
-        height="100%"
       />
       <Container as="section" paddingY={4} centerContent zIndex={2}>
         <Header data={data} setData={setData} />
         <Flex direction="column" paddingY={5} w="100%">
           <Flex id="location" alignContent="flex-start">
-            {data ? <Heading size="lg">{data.name}</Heading> : null}
+            {data ? <Heading variant="title">{data.name}</Heading> : null}
           </Flex>
           <Flex id="temp">
             {data ? (
-              <Heading size="lg">{data.main.temp.toFixed()}°C</Heading>
+              <Heading variant="title">{data.main.temp.toFixed()}°C</Heading>
             ) : null}
           </Flex>
           <Flex id="description">
-            {data ? <Heading size="lg">{data.weather[0].main}</Heading> : null}{" "}
+            {data ? (
+              <Heading variant="title">{data.weather[0].main}</Heading>
+            ) : null}{" "}
           </Flex>
         </Flex>
         <Footer data={data} />

@@ -3,22 +3,33 @@ import { Flex, Heading, Container } from "@chakra-ui/react";
 import { WeatherData } from "./interface/WeatherData";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import { Image } from "@chakra-ui/react";
 
 function App() {
   const [data, setData] = useState<WeatherData>(null);
 
   return (
-    <Flex as="main">
-      <Container>
+    <Flex as="main" height="100vh" justifyContent="center" w="100%">
+      <Image
+        src="./assets/sunset.jpg"
+        zIndex={1}
+        position="absolute"
+        height="100%"
+      />
+      <Container as="section" paddingY={4} centerContent zIndex={2}>
         <Header data={data} setData={setData} />
-        <Flex id="location">
-          {data ? <Heading>Location: {data.name}</Heading> : null}
-        </Flex>
-        <Flex id="temp">
-          {data ? <Heading>{data.main.temp.toFixed()}°C</Heading> : null}
-        </Flex>
-        <Flex id="description">
-          {data ? <Heading>{data.weather[0].main}</Heading> : null}{" "}
+        <Flex direction="column" paddingY={5} w="100%">
+          <Flex id="location" alignContent="flex-start">
+            {data ? <Heading size="lg">{data.name}</Heading> : null}
+          </Flex>
+          <Flex id="temp">
+            {data ? (
+              <Heading size="lg">{data.main.temp.toFixed()}°C</Heading>
+            ) : null}
+          </Flex>
+          <Flex id="description">
+            {data ? <Heading size="lg">{data.weather[0].main}</Heading> : null}{" "}
+          </Flex>
         </Flex>
         <Footer data={data} />
       </Container>

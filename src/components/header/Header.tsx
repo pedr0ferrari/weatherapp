@@ -11,7 +11,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ data, setData }) => {
   const [location, setLocation] = useState("");
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=0f84025191a187ada12ace978f3ffcef`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
@@ -23,13 +23,16 @@ const Header: React.FC<HeaderProps> = ({ data, setData }) => {
     }
   };
   return (
-    <Flex as="header">
+    <Flex as="header" width="100%">
       <Input
         value={location}
         type="text"
         onChange={(event) => setLocation(event.target.value)}
         onKeyPress={searchLocation}
         placeholder="Enter location..."
+        _placeholder={{ color: "gray.900" }}
+        borderColor="black"
+        bgColor="rgba(255,255,255, 0.2)"
       />
     </Flex>
   );
